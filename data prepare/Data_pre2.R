@@ -4,40 +4,6 @@ library(DT)
 library(SummarizedExperiment)
 library(mgsa)
 
-##The files have been downloaded to indicated folders by Data_Rep.R ###
-## Lung cancers: 
-# TCGA-LUSC
-# TCGA-LUAD
-# CPTAC-3 somehow not compile to this package
-# FM-AD, this one do not have
-
-# All lung cancer samples ####
-query_lung <- GDCquery(project = c("TCGA-LUSC", "TCGA-LUAD"),
-                       data.category = "Transcriptome Profiling",
-                       data.type = "Gene Expression Quantification",
-                       file.type = "FPKM.txt.gz"
-                       #barcode = listSamples,
-                       #legacy = TRUE
-)
-# Testing samples #####
-files = getResults(query_lung)[,8]
-listSamples <- sample(files, 10)
-
-
-query_t <- GDCquery(project = c("TCGA-SARC"),
-                       data.category = "Transcriptome Profiling",
-                       data.type = "Gene Expression Quantification",
-                       file.type = "FPKM.txt.gz"
-                       # barcode = listSamples
-                       # legacy = TRUE
-)
-
-BRCARnaseqSE <- GDCprepare(query_t, directory = '/Volumes/LaCie/Jingyu/TGCA data/Original Data/Cancers/Lung_Cancers/GDCdata_FPKM')
-
-save.image(file = '/Volumes/LaCie/Jingyu/TGCA data/Analysis/test.RData')
-
-BRCAMatrix <- assay(BRCARnaseqSE,"raw_count") 
-
 ##### Parse gene coordination #####
 library(biomaRt)
 ensembl = useEnsembl(biomart="ensembl", dataset="hsapiens_gene_ensembl")
