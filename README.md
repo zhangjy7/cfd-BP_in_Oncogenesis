@@ -1,2 +1,2 @@
 # COS
-genomic clustered but functional distinct biological pathway in oncogenesis and cancer staging
+genomic Clustered but functional distinct biological pathway in Oncogenesis and cancer Staging
